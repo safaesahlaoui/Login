@@ -1,0 +1,44 @@
+<mat-toolbar> Welcome </mat-toolbar>
+<div class="content"></div>
+<div class="form-container">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm">
+    <mat-form-field floatLabel="auto">
+      <input
+        #mail
+        matInput
+        placeholder="Email adress"
+        required
+        pattern="[a-z0-9._%+-]+@usmba+\.ac+\.ma$"
+        formControlName="email"
+      />
+      <mat-error *ngIf="email?.errors?.['required']">
+        email is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        #pswd
+        required
+        matInput
+        placeholder="password "
+        type="password"
+        formControlName="password"
+      />
+      <mat-error *ngIf="password?.errors?.['required']"
+        >password is required</mat-error
+      >
+    </mat-form-field>
+    <div class="center margin-top">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="login(mail.value, pswd.value)"
+        [routerLink]="['welcome']"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>
